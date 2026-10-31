@@ -5,7 +5,7 @@
 [![WordPress: 6.0+](https://img.shields.io/badge/WordPress-6.0%2B-21759B.svg)](https://wordpress.org/)
 [![RTL & LTR Support](https://img.shields.io/badge/Layout-RTL%20%26%20LTR-success.svg)](#)
 
-English | [فارسی](README.fa.md)
+English | [فارسی](README_FA.md)
 
 A modular, enterprise-grade suite of **AI Agent Skills** designed for WordPress and **Elementor (Elementor 4.0+ & 3.x)**. Built for AI coding assistants and autonomous agents (including Google Antigravity, Claude Code, Cursor, Codex, and Windsurf) to reliably design, build, style, inspect, and maintain modern Elementor websites.
 
