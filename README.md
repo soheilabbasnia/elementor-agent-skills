@@ -1,82 +1,146 @@
 # Elementor Agent Skills Suite
 
-<div dir="rtl">
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Elementor: 4.x / 3.x](https://img.shields.io/badge/Elementor-4.x%20%7C%203.x-92003B.svg)](https://elementor.com/)
+[![WordPress: 6.0+](https://img.shields.io/badge/WordPress-6.0%2B-21759B.svg)](https://wordpress.org/)
+[![RTL & LTR Support](https://img.shields.io/badge/Layout-RTL%20%26%20LTR-success.svg)](#)
 
-مجموعه مهارت‌های استاندارد و جامع برای طراحی، ساخت و مدیریت وب‌سایت‌های وردپرسی مبتنی بر **المنتور (Elementor 4.0+ & 3.x)** توسط ایجنت‌ها و دستیاران هوش مصنوعی (Antigravity, Claude Code, Cursor, Codex).
+English | [فارسی](README.fa.md)
 
-</div>
+A modular, enterprise-grade suite of **AI Agent Skills** designed for WordPress and **Elementor (Elementor 4.0+ & 3.x)**. Built for AI coding assistants and autonomous agents (including Google Antigravity, Claude Code, Cursor, Codex, and Windsurf) to reliably design, build, style, inspect, and maintain modern Elementor websites.
 
 ---
 
-## 🚀 Overview / نمای کلی
+## 🌟 Overview
 
-This repository provides an enterprise-grade modular suite of **AI Agent Skills** specifically tailored for WordPress & Elementor. Whether you want an AI agent to **generate clean, importable JSON templates from scratch** with modern Flexbox Containers, **build pages live via the Model Context Protocol (MCP)**, or **manage sites at scale using WP-CLI and Browser Automation**, this repository has a dedicated skill for each workflow.
+Building and maintaining Elementor sites using Large Language Models often leads to brittle HTML blocks, broken container layouts, invalid JSON structures, or accidental live-site regressions.
 
-این مجموعه به چهار مهارت تخصصی و مجزا تفکیک شده است تا ایجنت‌های هوش مصنوعی بتوانند بر اساس دسترسی‌ها و سناریوی پروژه، از مناسب‌ترین ابزار استفاده کنند:
+The **Elementor Agent Skills Suite** solves this by equipping AI agents with specialized, context-aware protocols:
+- **Zero brittle code injection**: Strict enforcement of native Elementor widgets (`heading`, `text-editor`, `image`, `button`, `icon-box`, `counter`) instead of raw un-editable HTML blocks.
+- **Modern Flexbox Containers**: Native v4+ container-first architecture with strict elimination of legacy Section / Column schemas.
+- **Design system integrity**: Schema-first token binding (`__globals__`) for colors and typography instead of hardcoded hex values.
+- **RTL & Persian layout mastery**: First-class support for Right-to-Left (RTL) reading directions, font families (Vazirmatn, IRANYekan, Dana), and bidirectional flex alignments.
 
-| Skill / نام مهارت | Focus / تمرکز اصلی | Connection Mode / نحوه ارتباط | RTL & Persian / پشتیبانی فارسی |
+---
+
+## 🧩 Skills Matrix
+
+The suite is divided into four focused skills tailored to different project phases and operational environments:
+
+| Skill | Primary Focus | Runtime Mode | RTL / Persian Support |
 | :--- | :--- | :--- | :---: |
-| [`elementor-template-architect`](skills/elementor-template-architect) | معمار تولید قالب‌های JSON سازگار با کانتینرهای فلکس‌باکس المنتور ۴+ | Offline / بدون نیاز به سایت (خروجی مستقیم JSON) | 🟢 بومی |
-| [`elementor-mcp`](skills/elementor-mcp) | طراحی و شخصی‌سازی زنده روی وردپرس از طریق پروتکل MCP (پلاگین EMCP Tools) | Live via MCP Protocol | 🟢 بومی |
-| [`elementor-premium-addons`](skills/elementor-premium-addons) | استفاده از افزونه پرمیوم ادانز، کتابخانه تمپلیت‌های آماده و ویجت‌های پیشرفته | Live via Premium Addons MCP | 🟢 بومی |
-| [`elementor-ops`](skills/elementor-ops) | تعمیرات، تغییر سریع متون دیتابیس با WP-CLI، خالی کردن کش و اتوماسیون مرورگر | WP-CLI (SSH) + Browser Automation | 🟢 بومی |
+| [`elementor-template-architect`](skills/elementor-template-architect) | Clean, importable Elementor v4+ JSON template generator | Offline / Standalone (Direct JSON output) | Native |
+| [`elementor-mcp`](skills/elementor-mcp) | Live WordPress page building and styling via Model Context Protocol (EMCP Tools) | Live via MCP Protocol | Native |
+| [`elementor-premium-addons`](skills/elementor-premium-addons) | Pre-built section insertion, advanced widgets & modals via Premium Addons MCP | Live via MCP Protocol | Native |
+| [`elementor-ops`](skills/elementor-ops) | Site maintenance, `_elementor_data` search-replace, cache flushes & visual QA | WP-CLI (SSH) + Browser Automation | Native |
 
 ---
 
-## 📂 Skills Breakdown / معرفی مهارت‌ها
+## 📂 Detailed Skills Breakdown
 
 ### 1. `elementor-template-architect`
-* **هدف:** تولید مستقیم قالب‌های تک‌صفحه یا بلوک‌های المنتور نسخه ۴ و ۳ جدید به صورت فایل ساختاریافته و استاندارد `.json`.
-* **ویژگی‌های کلیدی:**
-  * بهره‌گیری ۱۰۰٪ از معماری جدید **Flexbox Container** (حذف کامل ساختار منسوخ Section / Column).
-  * ایجاد شناسه‌های یکتا و معتبر هگزادسیمال ۸ کاراکتری برای تمامی المان‌ها.
-  * جلوگیری اکید از قرار دادن کدهای شکننده در ویجت `html` و حفظ ۱۰۰٪ قابلیت ویرایش بصری با ویجت‌های بومی (`heading`, `text-editor`, `button`, `image`, `icon-box`, `counter`).
-  * پیاده‌سازی استانداردهای چیدمان راست‌به‌چپ (RTL) و فونت‌های استاندارد فارسی (وزیرمتن، ایران‌یکان، دانا).
-  * واکنش‌گرایی تضمین‌شده برای تبلت و موبایل با متغیرهای اختصاصی `_tablet` و `_mobile`.
+* **Target**: Generating production-ready, 100% valid Elementor JSON templates offline without requiring an active WordPress connection.
+* **Key Highlights**:
+  * **Pure Container Architecture**: Generates standard v4+ container hierarchies (`elType: "container"`), eliminating obsolete Section/Column wrappers.
+  * **Valid 8-Character Hex IDs**: Generates cryptographically unique 8-character hex IDs (e.g., `4a9b2c1d`) for every element, strictly avoiding collidable timestamps or UUIDs.
+  * **Fully Editable Native Widgets**: Constructs complex layouts strictly with native Elementor widgets so users can visually tweak content in the Elementor editor.
+  * **Responsive Breakpoints**: Pre-configured values for Desktop, Tablet (`_tablet`), and Mobile (`_mobile`) viewports.
+  * **RTL & Typography Presets**: Pre-configured support for RTL directionality and Persian/Arabic typography.
 
 ### 2. `elementor-mcp`
-* **هدف:** ساخت و ویرایش صفحات روی وردپرس زنده از طریق پلاگین **EMCP Tools (v3+)**.
-* **ویژگی‌های کلیدی:**
-  * جریان استاندارد کار با کاتالوگ ویجت‌ها (`list-widgets` → `get-widget-schema` → `add-free-widget`).
-  * اعمال پالت رنگ و تایپوگرافی با متغیرهای Global Kit (`__globals__`) به جای هاردکد کردن مقادیر.
-  * حل باگ‌های رایج المنتور مانند تله جمع‌شدن کانتینرهای فرزند (`content_width: "full"` در فرزندان فلکس).
-  * استفاده از کلیدهای صحیح المنتور (مانند `flex_gap` به جای `gap` و `padding` به جای `_padding`).
+* **Target**: Building and editing live pages on WordPress through the **EMCP Tools (v3+)** plugin using the Model Context Protocol.
+* **Key Highlights**:
+  * **Catalog-Driven Workflow**: Discovers available widgets and retrieves strict schemas before mutating pages (`list-widgets` → `get-widget-schema` → `add-free-widget`).
+  * **Global Kit Tokens**: Injects dynamic style references via `__globals__` to maintain site-wide theme styling.
+  * **Container Trap Mitigation**: Automatically applies defensive layout fixes, such as setting child container widths to avoid flex shrink/collapse traps.
+  * **Accurate Elementor Property Keys**: Uses exact Elementor properties (`flex_gap` instead of `gap`, `padding` instead of `_padding`).
 
 ### 3. `elementor-premium-addons`
-* **هدف:** پشتیبانی از اکوسیستم پرطرفدار **Premium Addons for Elementor**.
-* **ویژگی‌های کلیدی:**
-  * دسترسی به صدها سکشن و الگوی آماده (Hero, Features, Pricing, Testimonials).
-  * اعمال تدابیر امنیتی عدم انتشار یا حذف تصادفی المان‌ها روی سایت زنده (Drafts by Default).
-  * هماهنگی استایل تمپلیت‌ها با استایل‌های کلی سایت.
+* **Target**: Supercharging Elementor with the **Premium Addons for Elementor** ecosystem.
+* **Key Highlights**:
+  * **Pre-Built Section Library**: Rapidly inserts curated sections (Hero sections, Features grids, Testimonials, Pricing tables, CTAs).
+  * **Advanced Widgets**: Interacts with complex widgets like Dual-Heading, Interactive Banners, Carousels, and Modal Popups.
+  * **Live-Site Safety Rules**: Default-to-draft workflows to prevent accidental overwrites or disruptions on production websites.
 
 ### 4. `elementor-ops`
-* **هدف:** مدیریت عملیاتی، نگهداری و خطایابی سایت‌های المنتوری بدون نیاز به MCP.
-* **ویژگی‌های کلیدی:**
-  * جایگزینی امن متون و آدرس تصاویر در دیتابیس با `wp search-replace` روی فیلد `_elementor_data`.
-  * خالی‌کردن فوری کش CSS المنتور (`wp elementor flush-css`).
-  * کپی و انتقال قالب‌ها بین صفحات به کمک WP-CLI.
-  * بازبینی ظاهری و تست واکنش‌گرایی صفحه از طریق ابزارهای مرورگر بدون هدلس (مانند Playwright).
+* **Target**: Operational maintenance, troubleshooting, migrations, and automated verification without needing an MCP plugin installed.
+* **Key Highlights**:
+  * **Database-Safe Content Updates**: Safe search-and-replace routines for Elementor JSON stored within `_elementor_data` via WP-CLI.
+  * **Cache Management**: Instant CSS regeneration via `wp elementor flush-css`.
+  * **Template Duplication & Migration**: CLI-based cloning and transferring of templates across pages and environments.
+  * **Visual QA Loops**: Verification of responsive layouts, rendering, and fonts using Playwright or Chrome browser automation.
 
 ---
 
-## 🛠️ Installation & Usage / راهنمای نصب و استفاده
+## 🚀 Installation & Usage
 
-### در Antigravity:
-کافی است این مخزن یا پوشه هر مهارت را در مسیر مهارت‌های کاربر یا پروژه قرار دهید:
+### For Google Antigravity
+Copy the skills directory into your Antigravity skills repository:
 ```bash
-# کپی کل مهارت‌ها در پوشه مهارت‌های کاربری آنتی‌گرویتی
+# User-level installation (available across all workspaces)
 cp -r skills/* ~/.gemini/antigravity/skills/
+
+# Or workspace-level installation
+mkdir -p .gemini/skills
+cp -r skills/* .gemini/skills/
 ```
 
-### در Claude Code یا دستیارهای دیگر:
-می‌توانید هر مهارت را به مسیر `.claude/skills/` پروژه یا دایرکتوری تنظیمات اضافه کنید:
+### For Claude Code
+Add individual skills or the entire suite to your Claude configuration:
 ```bash
 mkdir -p .claude/skills
-cp -r skills/elementor-template-architect .claude/skills/
+cp -r skills/* .claude/skills/
 ```
+
+### For Cursor, Windsurf, or Custom Agent Frameworks
+You can reference the `SKILL.md` files directly in your agent system prompts or custom instructions:
+```markdown
+Follow the instructions and constraints defined in:
+- skills/elementor-template-architect/SKILL.md
+- skills/elementor-mcp/SKILL.md
+```
+
+---
+
+## 🔄 Recommended Agent Workflows
+
+```mermaid
+flowchart TD
+    A[New Project / Design Brief] --> B{Choose Workflow}
+    
+    B -->|Offline Generation| C[elementor-template-architect]
+    C --> C1[Generate JSON Template]
+    C1 --> C2[Import via Elementor Library]
+    
+    B -->|Live Site with MCP| D[elementor-mcp]
+    D --> D1[Inspect Kit & Global Styles]
+    D1 --> D2[Add & Style Containers & Widgets]
+    D2 --> D3[Visual Preview & Review]
+    
+    B -->|Premium Addons Library| E[elementor-premium-addons]
+    E --> E1[Insert Ready-Made Blocks]
+    E1 --> E2[Apply Site Colors & Content]
+    
+    B -->|Ops / Maintenance / Migration| F[elementor-ops]
+    F --> F1[WP-CLI Search-Replace]
+    F1 --> F2[Flush CSS Cache]
+    F2 --> F3[Automated Screenshot QA]
+```
+
+---
+
+## 🤝 Contributing
+
+Contributions, bug reports, and suggestions are welcome!
+1. Fork the repository.
+2. Create your feature branch (`git checkout -b feature/awesome-skill`).
+3. Commit your changes (`git commit -m 'Add new skill feature'`).
+4. Push to the branch (`git push origin feature/awesome-skill`).
+5. Open a Pull Request.
 
 ---
 
 ## 📜 License
-Distributed under the [MIT License](LICENSE).
-Open source and free for the WordPress & AI developer community.
+
+This project is licensed under the [MIT License](LICENSE).
+Open source and freely available for the WordPress & AI developer community.
