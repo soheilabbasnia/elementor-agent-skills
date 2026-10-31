@@ -5,7 +5,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Elementor: 4.x / 3.x](https://img.shields.io/badge/Elementor-4.x%20%7C%203.x-92003B.svg)](https://elementor.com/)
 [![WordPress: 6.0+](https://img.shields.io/badge/WordPress-6.0%2B-21759B.svg)](https://wordpress.org/)
-[![پشتیبانی کامل راست‌به‌چپ (RTL)](https://img.shields.io/badge/طراحی-RTL%20%D9%88%20%D9%81%D8%A7%D8%B1%D8%B3%DB%8C-success.svg)](#)
+[![RTL & LTR Support](https://img.shields.io/badge/Layout-RTL%20%26%20LTR-success.svg)](#)
 
 [English](README.md) | فارسی
 
@@ -134,11 +134,12 @@ flowchart TD
 ## مشارکت در توسعه
 
 از پیشنهادات، گزارش خطاها و مشارکت‌های شما استقبال می‌کنیم!
-۱. این مخزن را Fork کنید.
-۲. برنچ جدیدی برای ویژگی خود بسازید (`git checkout -b feature/new-skill`).
-۳. تغییرات خود را Commit کنید (`git commit -m 'افزودن قابلیت جدید به مهارت'`).
-۴. تغییرات را Push کنید (`git push origin feature/new-skill`).
-۵. یک Pull Request ارسال نمایید.
+
+1. مخزن را فورک کنید.<br>
+2. یک شاخه جدید بسازید (`git checkout -b feature/new-agent-skill`).<br>
+3. تغییرات خود را کامیت کنید (`git commit -m "Add new feature"`).<br>
+4. تغییرات را به شاخه خود پوش نمایید (`git push origin feature/new-agent-skill`).<br>
+5. یک Pull Request باز کنید.
 
 ---
 
