@@ -11,7 +11,7 @@ A modular, enterprise-grade suite of **AI Agent Skills** designed for WordPress 
 
 ---
 
-## 🌟 Overview
+## Overview
 
 Building and maintaining Elementor sites using Large Language Models often leads to brittle HTML blocks, broken container layouts, invalid JSON structures, or accidental live-site regressions.
 
@@ -23,7 +23,7 @@ The **Elementor Agent Skills Suite** solves this by equipping AI agents with spe
 
 ---
 
-## 🧩 Skills Matrix
+## Skills Matrix
 
 The suite is divided into four focused skills tailored to different project phases and operational environments:
 
@@ -36,7 +36,7 @@ The suite is divided into four focused skills tailored to different project phas
 
 ---
 
-## 📂 Detailed Skills Breakdown
+## Detailed Skills Breakdown
 
 ### 1. `elementor-template-architect`
 * **Target**: Generating production-ready, 100% valid Elementor JSON templates offline without requiring an active WordPress connection.
@@ -72,7 +72,7 @@ The suite is divided into four focused skills tailored to different project phas
 
 ---
 
-## 🚀 Installation & Usage
+## Installation & Usage
 
 ### For Google Antigravity
 Copy the skills directory into your Antigravity skills repository:
@@ -102,25 +102,25 @@ Follow the instructions and constraints defined in:
 
 ---
 
-## 🔄 Recommended Agent Workflows
+## Recommended Agent Workflows
 
 ```mermaid
 flowchart TD
     A[New Project / Design Brief] --> B{Choose Workflow}
-    
+
     B -->|Offline Generation| C[elementor-template-architect]
     C --> C1[Generate JSON Template]
     C1 --> C2[Import via Elementor Library]
-    
+
     B -->|Live Site with MCP| D[elementor-mcp]
     D --> D1[Inspect Kit & Global Styles]
     D1 --> D2[Add & Style Containers & Widgets]
     D2 --> D3[Visual Preview & Review]
-    
+
     B -->|Premium Addons Library| E[elementor-premium-addons]
     E --> E1[Insert Ready-Made Blocks]
     E1 --> E2[Apply Site Colors & Content]
-    
+
     B -->|Ops / Maintenance / Migration| F[elementor-ops]
     F --> F1[WP-CLI Search-Replace]
     F1 --> F2[Flush CSS Cache]
@@ -129,7 +129,7 @@ flowchart TD
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Contributions, bug reports, and suggestions are welcome!
 1. Fork the repository.
@@ -140,7 +140,8 @@ Contributions, bug reports, and suggestions are welcome!
 
 ---
 
-## 📜 License
+## License
 
 This project is licensed under the [MIT License](LICENSE).
 Open source and freely available for the WordPress & AI developer community.
+
