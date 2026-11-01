@@ -207,9 +207,9 @@ The user's memory dir uses an `MEMORY.md` index file that lists the others. Load
 ### `MEMORY.md` (index)
 
 ```markdown
-- [User role](user_role.md) — who the user is, their tech comfort level
-- [<site> site context](project_<site>_site.md) — local + remote URLs, stack, paths, MCP wiring
-- [MCP transport for <site>](feedback_mcp_transport_<site>.md) — stdio vs http rationale for this site
+- `user_role.md` — who the user is, their tech comfort level
+- `project_<site>_site.md` — local + remote URLs, stack, paths, MCP wiring
+- `feedback_mcp_transport_<site>.md` — stdio vs http rationale for this site
 ```
 
 (Add more lines as additional memory files accumulate. The user may already have site-agnostic feedback memories like `feedback_wp_mcp_setup_workflow.md` from prior projects — keep those in their existing location.)
