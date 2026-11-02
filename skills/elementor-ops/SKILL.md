@@ -23,10 +23,14 @@ This skill provides operational procedures for editing and managing Elementor we
 | **Flushing CSS & regeneration** | WP-CLI `wp elementor flush-css` | None |
 | **Widget styling & layout tweaks** | Browser Automation (Playwright / Chrome) | None |
 | **Adding/removing sections & widgets** | Browser Automation (Playwright / Chrome) | None |
-| **Visual QA & Responsive screenshot** | Browser Automation | None |
+| **Visual QA & Screenshot** | Playwright — cropped WebP, element-only, final step only | None |
+| **Functional checks (menu, click, hover)** | Accessibility Tree first — screenshot only if tree is insufficient | None |
 
 > [!TIP]
 > **Rule of Thumb:** If changing text, phone numbers, or image URLs within existing widgets, WP-CLI is dramatically faster. For structural or visual styling modifications, use browser automation.
+
+> [!IMPORTANT]
+> **Bandwidth Rule:** Never take a full-page screenshot. Always crop to the specific element under test and use WebP format. Screenshots are a last resort — prefer Accessibility Tree for functional checks like hamburger menus, dropdowns, and hover states.
 
 ---
 
@@ -86,23 +90,85 @@ wp elementor flush-css
 
 ---
 
-## 3. Visual Editing & QA via Browser Automation
+## 3. Visual QA via Browser Automation
 
-When structural changes or widget insertions are required on sites without MCP:
+### Screenshot Rules — Bandwidth Optimization
 
-### Playwright / Headless Browser Flow
-```bash
-# 1. Navigate to Elementor Editor
-playwright-cli open "https://example.com/wp-admin/post.php?post=<POST_ID>&action=elementor"
+**Always follow these rules. No exceptions.**
 
-# 2. Wait for visual editor canvas and widgets sidebar to finish loading
-# 3. Perform edits or verify layouts
-# 4. Take full-page visual verification screenshot
-playwright-cli screenshot --filename="qa-elementor-verify.png" --full-page
+- **NEVER** take full-page screenshots
+- **ALWAYS** crop to the specific element being tested
+- **Format:** WebP only (`--type=webp`) — never PNG or JPEG
+- **Max viewport width:** 1280px
+- **Take a screenshot ONLY at these moments:**
+  1. After the **final** change is applied and verified — not during intermediate steps
+  2. When a specific visual bug cannot be confirmed any other way
+
+**Before cropping:** get the element's exact bounding box via JavaScript:
+```js
+// Run this in the browser console or via playwright evaluate
+document.querySelector('header').getBoundingClientRect()
+// → { x: 0, y: 0, width: 1280, height: 80 }
+// Use those exact values for --clip below
 ```
+
+### Playwright Screenshot Flow
+
+```bash
+# 1. Navigate to the FRONTEND URL — never the Elementor editor — for visual QA
+playwright-cli open "https://example.com"
+
+# 2. Screenshot ONLY the target element using its bounding box
+#    Example: header area
+playwright-cli screenshot \
+  --clip="0,0,1280,80" \
+  --type=webp \
+  --filename="qa-header.webp"
+
+# 3. For hamburger menu — click the button first, then screenshot only the open menu area
+#    Step A: click the hamburger button
+playwright-cli click "button.menu-toggle"
+#    Step B: screenshot only the expanded menu panel
+playwright-cli screenshot \
+  --clip="0,0,400,600" \
+  --type=webp \
+  --filename="qa-menu-open.webp"
+
+# 4. For mobile responsive check — resize viewport, then crop
+playwright-cli set-viewport-size "375,812"
+playwright-cli screenshot \
+  --clip="0,0,375,80" \
+  --type=webp \
+  --filename="qa-header-mobile.webp"
+```
+
+### Functional Checks — Prefer Accessibility Tree Over Screenshots
+
+For interactive elements (menus, dropdowns, buttons, modals), **always try the Accessibility Tree first**. It is text-based and costs near-zero bandwidth:
+
+```bash
+# Get the accessibility tree of the page — no image transfer needed
+playwright-cli accessibility
+
+# Check if a menu item is visible and focusable after clicking hamburger
+# Look for role="menuitem" or role="navigation" in the output
+# Only take a screenshot if the tree output is ambiguous or incomplete
+```
+
+**When to use Accessibility Tree vs Screenshot:**
+
+| Check | Use Accessibility Tree | Use Screenshot |
+| :--- | :---: | :---: |
+| Menu item exists and is reachable | ✅ | ❌ |
+| Button is enabled / disabled | ✅ | ❌ |
+| Modal opens after click | ✅ | ❌ |
+| Font, color, spacing looks correct | ❌ | ✅ (cropped) |
+| RTL alignment is visually correct | ❌ | ✅ (cropped) |
+| Hamburger menu visually renders correctly | ❌ | ✅ (cropped, menu area only) |
 
 ### RTL & Persian Visual QA Checklist
 When reviewing pages in browser automation:
 - Verify headings and paragraphs are aligned right (`text-align: right;`).
 - Check that icons and directional indicators point appropriately (e.g. back/forward).
 - Confirm no text wrapping collisions or diacritics clipping across mobile viewports (375px) and desktop (1280px).
+- For RTL checks, always crop to the specific widget — never full page.
